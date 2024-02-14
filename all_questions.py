@@ -141,18 +141,25 @@ def question3():
     answer = {}
 
     # float
-    answer["(a) Gini, overall"] = 0.
+    gini_a = 1 - ((10/20)**2 + (10/20)**2)
+    answer["(a) Gini, overall"] = gini_a
 
     # float
-    answer["(b) Gini, ID"] = 0.0
-    answer["(c) Gini, Gender"] = 0.
-    answer["(d) Gini, Car type"] = 0.
-    answer["(e) Gini, Shirt type"] = 0.
+    answer["(b) Gini, ID"] = 0.
 
-    answer["(f) attr for splitting"] = ""
+    gini_c = (10/20)*(1-(6/10)**2-(4/10)**2)+(10/20)*(1-(4/10)**2-(6/10)**2)
+    answer["(c) Gini, Gender"] = gini_c
+
+    gini_d = (4/20)*(1-(1/4)**2-(3/4)**2)+(8/20)*(1-(0/8)**2-(8/8)**2)+(8/20)*(1-(1/8)**2-(7/8)**2)
+    answer["(d) Gini, Car type"] = gini_d
+
+    gini_e = (5/20)*(1-(3/5)**2-(2/5)**2)+(7/20)*(1-(3/7)**2-(4/7)**2)+(4/20)*(1-(2/4)**2-(2/4)**2)+(4/20)*(1-(2/4)**2-(2/4)**2)
+    answer["(e) Gini, Shirt type"] = gini_e
+
+    answer["(f) attr for splitting"] = "Car Type"
 
     # Explanatory text string
-    answer["(f) explain choice"] = ""
+    answer["(f) explain choice"] = "Car type has the lowest gini index and indicates the attribute with the highest purity split. Customer ID technically has the lowest gini, but tells us no information about the Class values because every new record in the table will be assigned a new ID."
 
     return answer
 
