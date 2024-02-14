@@ -99,18 +99,36 @@ def question2():
     answer = {}
 
     # Answers are floats
-    answer["(a) entropy_entire_data"] = 0.
-    # Infogain
-    answer["(b) x <= 0.2"] = 0.
-    answer["(b) x <= 0.7"] = 0.
-    answer["(b) y <= 0.6"] = 0.
+    total_entropy = - (.41*u.log2(.41)+.46*u.log2(.46)+.13*u.log2(.13))
+
+    answer["(a) entropy_entire_data"] = total_entropy
+
+    # Info gain
+    entropy = -.2*(0+.16/.2*u.log2(.16/.2)+.04/.2*u.log2(.04/.2))-.8*(.41/.8*u.log2(.41/.8)+.3/.8*u.log2(.3/.8)+.09/.8*u.log2(.09/.8))
+    answer["(b) x < 0.2"] = total_entropy - entropy
+
+    entropy = -.7*(.2*u.log2(.2)+.46*u.log2(.46)+.04*u.log2(.04))-.3*(.21*u.log2(.21)+0+.09*u.log2(.09))
+    answer["(b) x < 0.7"] = total_entropy - entropy
+
+    entropy = -.4*(.32*u.log2(.32)+.04*u.log2(.04)+.04*u.log2(.04))-.6*(.09*u.log2(.09)+.42*u.log2(.42)+.09*u.log2(.09))
+    answer["(b) y < 0.6"] = total_entropy - entropy
 
     # choose one of 'x=0.2', 'x=0.7', or 'x=0.6'
-    answer["(c) attribute"] = ""  
+    answer["(c) attribute"] = "y<=0.6"
 
     # Use the Binary Tree structure to construct the tree
     # Answer is an instance of BinaryTree
-    tree = u.BinaryTree("Root")
+    tree = u.BinaryTree("y<=0.6")
+    A = tree.insert_left("x<=0.7")
+    A.insert_left("B")
+    B = A.insert_right("y<=0.3")
+    B.insert_left("A")
+    B.insert_right("C")
+    C = tree.insert_right("x<=0.2")
+    C.insert_right("A")
+    D = C.insert_left("y<=0.8")
+    D.insert_left("C")
+    D.insert_right("B")
     answer["(d) full decision tree"] = tree
 
     return answer
