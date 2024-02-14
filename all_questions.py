@@ -291,20 +291,33 @@ def question6():
 def question7():
     answer = {}
 
+    entropy = -((10/20)*u.log2(10/20)+(10/20)*u.log2(10/20))
+    id_gain = entropy - 0.0
     # float
-    answer["a, info gain, ID"] = 0.
-    answer["b, info gain, Handedness"] = 0.
+    answer["a, info gain, ID"] = id_gain
+
+    entropy_left = -((9/10)*u.log2(9/10)+(1/10)*u.log2(1/10))
+    entropy_right = -((1/10)*u.log2(1/10)+(9/10)*u.log2(9/10))
+    weighted_entropy_subsets = (10/20)*entropy_left+(10/20)*entropy_right
+    h_gain = entropy-weighted_entropy_subsets
+    answer["b, info gain, Handedness"] = h_gain
 
     # string: "ID" or "Handedness"
-    answer["c, which attrib"] = ""
+    answer["c, which attrib"] = "ID"
 
+    info = -20*(1/20*u.log2(1/20))
+    id_gain_ratio = id_gain / info
     # answer is a float
-    answer["d, gain ratio, ID"] = 0.
-    answer["e, gain ratio, Handedness"] = 0.
+    answer["d, gain ratio, ID"] = id_gain_ratio
+
+    info = -(10/20*u.log2(10/20)+10/20*u.log2(10/20))
+
+    h_gain_ratio= h_gain/info
+    answer["e, gain ratio, Handedness"] = h_gain_ratio
 
     # string: one of 'ID' or 'Handedness' based on gain ratio
     # choose the attribute with the largest gain ratio
-    answer["f, which attrib"] = ""
+    answer["f, which attrib"] = "Handedness"
 
     return answer
 
