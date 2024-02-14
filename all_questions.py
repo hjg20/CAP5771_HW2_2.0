@@ -233,18 +233,19 @@ def question5():
     # Read appropriate section of book chapter 3
 
     # string: one of 'Model 1' or 'Model 2'
-    explain["a"] = ""
-    explain["a explain"] = ""
+    explain["a"] = "Model 2"
+    explain["a explain"] = "Model 1 is not pruned and is over-fitting the training data, which is why dataset B (the testing data) has such a low accuracy compared to the accuracy in Model 2, which is pruned and therefore is combating over-fitting."
 
     # string: one of 'Model 1' or 'Model 2'
-    explain["b"] = ""
-    explain["b explain"] = ""
+    explain["b"] = "Model 2"
+    explain["b explain"] = "Model 1 is still over-fitting dataset A. Therefore, when tested against both dataset in dataset A. If we were to introduce unseen data, Model 2 would perform better than Model 1."
 
-    explain["c similarity"] = ""
-    explain["c similarity explain"] = ""
+    explain["c similarity"] = "Both prevent over-fitting."
+    explain["c similarity explain"] = "Both MDL and Pessimistic Error Estimate have some sort of method that discourages a tree to grow complex and over-fit training data and encourages it to stay simple."
 
-    explain["c difference"] = ""
-    explain["c difference explain"] = ""
+    explain["c difference"] = "MDL aims mainly at reducing the complexity of the tree whereas Pessimistic Error Estimate aims to reduce the error rate through penalties."
+
+    explain["c difference explain"] = """MDL wants to create a tree which has the shortest total length of the tree and the smallest training errors. Pessimistic Error Estimate adds penalty terms that increases alongside the complexity of the tree in order to decrease error."""
 
     return explain
 
